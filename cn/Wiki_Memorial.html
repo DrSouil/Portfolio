@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Wiki Memorial</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+				<link rel="stylesheet" href="../assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<!-- <span class="symbol"><img src="images/logo.svg" alt="" /> -->
+									<!-- </span><span class="title">Kinder</span> -->
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html" >Home</a></li>
+							<li><a href="Wiki_Memorial.html">Wiki Memorial</a></li>
+							<li><a href="MR_Platform.html">MR Platform</a></li>
+							<li><a href="Orbit.html">Orbit</a></li>
+							<li><a href="color_knit.html">Color Knit</a></li>
+							<li><a href="cololele.html">Cololele</a></li>	
+							<li><a href="rainbow_piano.html">Rainbow Piano</a></li>											
+							<li><a href="ColorHunter.html">ColorHunter</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Wiki Memorial</h1>
+									<p><b>数据挖掘，数据可视化</b></p>
+									<p><b>Python, Processing, D3.js, Houdini</b></p>
+									<p><b>2018年5月</b></p>
+									<p><b>关于</b></p>
+									<p>
+										“Wiki Memorial”的意思是维基纪念碑。我想做的是把维基百科上来自世界各地不同身份的逝者的数据收集起来，根据每个人的维基百科数据在一个虚拟的空间内为他们树立起纪念碑。<br>
+										我使用Python抓取维基百科2017年的逝者数据，然后进行筛选和处理。 使用d3.js进行网页端的可视化，使用在Houdini里使用VEX脚本根据数据自动生成几何体和相对应的几何体属性。最后用Houdini渲染输出。
+									</p>
+									<p><b>Python网页数据爬取</b></p>
+									<span class="image middle"><img src="../images\Wiki_Memorial/python.PNG" alt=""></span>
+									<p>使用Requests获取网页，BeautifulSoup分析网页。
+									<a href="https://en.wikipedia.org/wiki/2017" target="_Blank"><b>源网页</b></a>|	
+									<a href="../images\Wiki_Memorial/data_2017.txt" target="_Blank"><b>输出的数据</b></a>
+									</p>
+									<p><b>数据可视逝者属性映射</b></p>
+									<span class="image middle"><img src="../images\Wiki_Memorial/processing.PNG" alt=""></span>
+									
+									<p>柱形高度代表这个人的wiki页面字数，也就是他在维基百科中被人铭记的指数。颜色深浅代表逝世年龄，颜色约深越长寿。（图为使用Processing做的2D可视化）</p>
+
+									<p><b>使用d3.js的响应式瀑布流布局的数据可视化页面</b></p>
+									<span class="image middle"><img src="../images\Wiki_Memorial/2160h.png" alt=""></span>
+									
+									<p>使用了同样的数据映射原则。点击每个人的纪念碑可以跳转到他们的维基页面。<br><br> <a href="../images\Wiki_Memorial/Wiki_Memorial_d3.html" target="_Blank" class="button special"><b>点击这里体验</b></a>
+									<p><b>数据可视3D位置映射</b></p>
+
+									<span class="image middle"><img src="../images\Wiki_Memorial/3Dmapping.png" alt=""></span>
+									
+
+									<p>Z轴代表月份，X轴代表当月的第几人。</p>
+									
+
+									<p><b>Hounidi VEX，根据数据自动生成物体</b></p>
+									<span class="image middle"><img src="../images\Wiki_Memorial/houdini_op.PNG" alt=""></span>
+									
+									<p><b>渲染输出</b></p>
+									<span class="image fit"><img src="../images\Wiki_Memorial/ironmountain.png" alt=""></span>
+									<span class="image middle"><img src="../images\Wiki_Memorial/1080.jpg" alt=""></span>
+									<span class="image fit"><video src="..\images\Wiki_Memorial/jpg.mp4"  controls="controls" loop="loop" autoplay="autoplay"></video></span>
+									<span class="image fit"><video src="..\images\Wiki_Memorial/jpg2.mp4"  controls="controls" loop="loop" autoplay="autoplay"></video></span>									
+							<!-- 		<span class="image middle"><img src="../images\Wiki_Memorial/jpg.gif" alt=""></span>
+									<span class="image middle"><img src="../images\Wiki_Memorial/jpg2.gif" alt=""></span> -->							
+						</div>
+					</div>
+
+				<!-- Footer -->
+<!-- 					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="field half first">
+										<input type="text" name="name" id="name" placeholder="Name" />
+									</div>
+									<div class="field half">
+										<input type="email" name="email" id="email" placeholder="Email" />
+									</div>
+									<div class="field">
+										<textarea name="message" id="message" placeholder="Message"></textarea>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="special" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer> -->
+
+			</div>
+
+		<!-- Scripts -->
+				<script src="../assets/js/jquery.min.js"></script>
+				<script src="../assets/js/skel.min.js"></script>
+				<script src="../assets/js/util.js"></script>
+				<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+				<script src="../assets/js/main.js"></script>
+
+	</body>
+</html>

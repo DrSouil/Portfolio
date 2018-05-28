@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>Wiki Memorial</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<!-- <span class="symbol"><img src="images/logo.svg" alt="" /> -->
+									<!-- </span><span class="title">Kinder</span> -->
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html" >Home</a></li>
+							<li><a href="Wiki_Memorial.html">Wiki Memorial</a></li>
+							<li><a href="MR_Platform.html">MR Platform</a></li>
+							<li><a href="Orbit.html">Orbit</a></li>
+							<li><a href="color_knit.html">Color Knit</a></li>
+							<li><a href="cololele.html">Cololele</a></li>
+							
+							<li><a href="rainbow_piano.html">Rainbow Piano</a></li>
+							
+							
+							<li><a href="ColorHunter.html">ColorHunter</a></li>
+
+							
+
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Wiki Memorial</h1>
+									<p><b>Data Mining, Data visualization</b></p>
+									<p><b>Python, Processing, D3.js, Houdini</b></p>
+									<p><b>May 2018</b></p>
+									<p><b>About</b></p>
+									<p>My concept is that I want to collect the data of dead people from various countries  and backgrounds on Wikipedia, then I can build up memorials according to their Wikipedia  page data in a virtual  space. <br>
+									I used Python to crawl Wikipedia 2017 death data and then filtered and analyzed it. I used d3.js to do the visualization on webpage and VEX in Houdini to automatically generate geometry and its attributes corresponding to the data. Finally, the images and videos were rendered out by Houdini.
+
+
+									</p>
+									<p><b>Python data crawling</b></p>
+									<span class="image middle"><img src="images\Wiki_Memorial/python.PNG" alt=""></span>
+									<p>Using Requests to request webpage，BeautifulSoup to analyze it。
+									<a href="https://en.wikipedia.org/wiki/2017" target="_Blank"><b>Source page	</b></a>|
+									 <a href="images\Wiki_Memorial/data_2017.txt" target="_Blank"><b>Saved data</b></a>	</p>
+									<p><b>Data mapping of dead people attribute</b></p>
+									<span class="image middle"><img src="images\Wiki_Memorial/processing.PNG" alt=""></span>
+									
+									<p>The column height represents the words of Wiki page of him, that is, the indicator of how he has been remembered in Wikipedia. The color represents the age of death, and the darker the color, the longer he lived. (This picture is a 2D visualization using Processing).</p>
+
+									<p><b>Responsive masonry layout data visualization using d3.js</b></p>
+									<span class="image middle"><img src="images\Wiki_Memorial/2160h.png" alt=""></span>
+									
+									<p>Still the same data mapping principle. You can click on the bricks to visit their Wikipedia pages. <br><br> <a href="images\Wiki_Memorial/Wiki_Memorial_d3.html" target="_Blank" class="button special"><b>Experience here</b></a></p>
+
+
+
+									<p><b>Data mapping of 3D position</b></p>
+
+									<span class="image middle"><img src="images\Wiki_Memorial/3Dmapping.png" alt=""></span>
+									
+
+									<p>Z axis represents months，X axis represents the sequence number.</p>
+									
+
+									<p><b>Hounidi VEX，generates geometry corresponding to the data</b></p>
+									<span class="image middle"><img src="images\Wiki_Memorial/houdini_op.PNG" alt=""></span>
+									
+									<p><b>Render out</b></p>
+									
+									<span class="image fit"><img src="images\Wiki_Memorial/ironmountain.png" alt=""></span>
+									<span class="image middle"><img src="images\Wiki_Memorial/1080.jpg" alt=""></span>
+									<span class="image fit"><video src="images\Wiki_Memorial/jpg.mp4"  controls="controls" loop="loop" autoplay="autoplay"></video></span>
+									<span class="image fit"><video src="images\Wiki_Memorial/jpg2.mp4"  controls="controls" loop="loop" autoplay="autoplay"></video></span>
+									<!-- <span class="image middle"><img src="images\Wiki_Memorial/jpg.gif" alt=""></span> -->
+									<!-- <span class="image middle"><img src="images\Wiki_Memorial/jpg2.gif" alt=""></span> -->
+									
+
+							
+<!-- 							<span class="image fit">
+								<iframe src="./Orbit_files/217374602.html" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+								<p><a href="https://vimeo.com/217374602">Final_Video</a> from <a href="https://vimeo.com/user47594979">hengshi kang</a>. </p>
+								
+							</span> -->
+
+
+							
+
+										
+										
+							
+							
+							
+						</div>
+					</div>
+
+				<!-- Footer -->
+<!-- 					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="field half first">
+										<input type="text" name="name" id="name" placeholder="Name" />
+									</div>
+									<div class="field half">
+										<input type="email" name="email" id="email" placeholder="Email" />
+									</div>
+									<div class="field">
+										<textarea name="message" id="message" placeholder="Message"></textarea>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="special" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer> -->
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	
+</body></html>

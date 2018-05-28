@@ -1,0 +1,136 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Wiki Memorial D3</title>
+		<meta charset="utf-8">
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="d3-masonic.js"></script>
+		<link rel="stylesheet" href="../assets/css/main.css" />
+	</head>
+	<style>
+		
+		body {
+			/*font-family: "Hoefler Text", "Times New Roman", serif;*/
+			padding: 20px;
+		}
+
+		a {
+			color: #000;
+			text-decoration: none;
+		}
+
+
+		#container {
+			width: 80%;
+			margin: 0 auto;
+		}
+
+		#wall {
+			position: relative;
+			background: #fff;
+		}
+
+		#wall .brick {
+			position: absolute;
+			text-align: center;
+/*			padding-top :20px;
+			
+
+			background-color: white;*/
+			outline: 1px solid white;
+
+		}
+
+
+
+
+	</style>
+	<body>
+		<div id="container">
+			<h1>Wiki Memorial D3</h1>
+			<p>The concept is that I want to collect the data of dead people from various countries and backgrounds on Wikipedia, then I can build up memorials according to their Wikipedia page data in this webpage space. 
+			<br><br>
+			I used Python to crawl Wikipedia 2017 death data and then filtered and analyzed it. I used d3.js to do the  responsive masonry layout data visualization.
+			<br><br>
+			The brick height represents the words of Wiki page of him, that is, the indicator of how he has been remembered in Wikipedia. The color represents the age of death, and the darker the color, the longer he lived.	
+			<br> <br>You can click on the bricks to visit their Wikipedia pages.
+			</p>
+			<div id="wall">
+			</div>
+		</div>
+
+		<script>
+
+			d3.csv("data_2017_d3.csv", function(error, data) {
+
+				data.forEach(function(d) {
+					d["old"] = +d["old"];
+					d["words"] = +d["words"];
+				});
+				var max = d3.max(data, function(d) { return d["old"]; });
+				var min = d3.min(data, function(d) { return d["old"]; });
+				//console.log(max);
+				var wall = d3.select("#wall"),
+
+				color = d3.scale.linear()
+				.domain([min, max])
+				.range(["hsl(0,0,100%)", "hsl(0,0,30%)"]),
+				bricks = wall.selectAll(".brick")
+				.data(data)
+				.enter()
+				//.append("div")
+				.append("a")
+				.attr("class", "brick")
+				.attr("href", function(d) {
+					return "https://en.wikipedia.org/wiki/" + d["name"];
+
+				})
+				.attr("target", "_blank")
+				
+				.text(function(d) { return d["name"]; })
+				// .style("background-clip", "content-box")
+				.style("background", function(d) {
+					return color(d["old"]);
+				})
+				
+				;
+
+					var masonic = d3.masonic()
+					.width(100)
+					.height(function(d) { return d["words"]/80; })
+					.columnWidth(110);
+					function resize() {
+						var outerWidth = wall.property("offsetWidth");
+						masonic
+						.outerWidth(outerWidth)
+						.reset();
+
+						bricks
+						.datum(masonic)
+						.style("width", function(d) { return d.width + "px"; })
+						.style("height", function(d) { return d.height + "px"; })
+						.style("left", function(d) { return d.x + "px"; })
+						.style("top", function(d) { return (d.y) + "px" ; })
+
+						.datum(function(d) {
+							return d.data;
+						});
+
+						wall.style("height", masonic.outerHeight() + "px");
+					}
+
+					resize();
+					window.addEventListener("resize", resize);
+
+	  // 3. Code here runs last, after the download finishes.
+	});
+
+
+
+
+
+
+</script>
+</body>
+</html>
+
