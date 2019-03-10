@@ -2,7 +2,7 @@
 
 <html>
 	<head>
-		<title>Wiki Memorial</title>
+		<title>AR-AI Sketchpad</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -41,6 +41,7 @@
 							<li><a href="index.html" >Home</a></li>
 							<li><a href="AR-AI Sketchpad.html">AR-AI Sketchpad</a></li>
 							<li><a href="Proprioception.html">Proprioception</a></li>
+
 							<li><a href="Wiki_Memorial.html">Wiki Memorial</a></li>
 							<li><a href="MR_Platform.html">MR Platform</a></li>
 							<li><a href="Orbit.html">Orbit</a></li>
@@ -60,47 +61,37 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>Wiki Memorial</h1>
-									<p><b>Data Mining, Data 3D visualization</b></p>
-									<p><b>Python, Processing, D3,js, Houdini</b></p>
-									<p><b>May 2018</b></p>
+							<h1>AR-AI Sketchpad</h1>
+									<p><b>AR, AI</b></p>
+									<p><b>Unity3D, Google ARCore, MadMapper, Android device, Projector, Webcamera</b></p>
+									<p><b>March 2019 ongoing</b></p>
 									<p><b>About</b></p>
-									<p>My concept is that I want to collect the data of dead people from various countries  and backgrounds on Wikipedia, then I can build up memorials according to their Wikipedia  page data in a virtual  space. <br>
-									I used Python to crawl Wikipedia 2017 death data and then filtered and analyzed it before I imported into Houdini. I used VEX in Houdini to automatically generate geometry and its attributes corresponding to the data. Finally, the images and videos were rendered out by Houdini.
+									<p>AR-AI Sketchpad is an augmented reality application which using artificial intelligent to enhance participants’ pen and paper sketch. <br><br>
+
+First the sketch models were trained using Pix2Pix algorithm separately with different image sets such as cats, dogs, building facades, city maps. Participants can choose what model according to what kind of sketch they want to be augmented. Then they just naturally draw on paper with pen and use AR-AI Sketchpad on mobile devices to transfer the original sketch and view the AI generated result in an AR view. It also has the project mapping version which can support larger space and multi participants.<br><br>
+
+It combines two emerging technologies and media together. Allow users to draw naturally and intuitively in a way since they learned as kids but still have the most advanced neural network algorithm help them with sketch style, color and suggestion. It can inspire general people with this artificial intelligent touch of sketch, although when it comes into professionals’ hands, it will be come powerful design and art production tool with higher fidelity models provided.
+
+
+
 
 
 									</p>
-									<p><b>Python data crawling</b></p>
-									<span class="image middle"><img src="images\Wiki_Memorial/python.PNG" alt=""></span>
-									<p>Using Requests to request webpage，BeautifulSoup to analyze it。
-									<a href="https://en.wikipedia.org/wiki/2017" target="_Blank"><b>Source page	</b></a>|
-									 <a href="images\Wiki_Memorial/data_2017.txt" target="_Blank"><b>Saved data</b></a>	</p>
-									<p><b>Data mapping of dead people attribute</b></p>
-									<span class="image middle"><img src="images\Wiki_Memorial/processing.PNG" alt=""></span>
 
-									<p>The column height represents the words of Wiki page of him, that is, the indicator of how he has been remembered in Wikipedia. The color represents the age of death, and the darker the color, the longer he lived. (This picture is a 2D visualization using Processing).</p>
+									<p><b>Mobile AR-AI Sketchpad</b></p>
 
+									<span class="image fit">
+									<iframe width="640" height="564" src="https://player.vimeo.com/video/322652705" frameborder="0" allowFullScreen mozallowfullscreen webkitAllowFullScreen></iframe>
 
+									</span>
 
-									<p><b>Data mapping of 3D position</b></p>
+									<p><b>Projection mapping version</b></p>
 
-									<span class="image middle"><img src="images\Wiki_Memorial/3Dmapping.png" alt=""></span>
+									<span class="image fit">
+									<iframe width="640" height="564" src="https://player.vimeo.com/video/322653068" frameborder="0" allowFullScreen mozallowfullscreen webkitAllowFullScreen></iframe>
 
+									</span>
 
-									<p>Z axis represents months，X axis represents the sequence number.</p>
-
-
-									<p><b>Hounidi VEX，generates geometry corresponding to the data</b></p>
-									<span class="image middle"><img src="images\Wiki_Memorial/houdini_op.PNG" alt=""></span>
-
-									<p><b>Render out</b></p>
-
-									<span class="image fit"><img src="images\Wiki_Memorial/ironmountain.png" alt=""></span>
-									<span class="image middle"><img src="images\Wiki_Memorial/1080.jpg" alt=""></span>
-									<span class="image fit"><video src="images\Wiki_Memorial/jpg.mp4"  controls="controls" loop="loop" autoplay="autoplay"></video></span>
-									<span class="image fit"><video src="images\Wiki_Memorial/jpg2.mp4"  controls="controls" loop="loop" autoplay="autoplay"></video></span>
-									<!-- <span class="image middle"><img src="images\Wiki_Memorial/jpg.gif" alt=""></span> -->
-									<!-- <span class="image middle"><img src="images\Wiki_Memorial/jpg2.gif" alt=""></span> -->
 
 
 
