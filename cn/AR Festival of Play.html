@@ -7,8 +7,51 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="../assets/css/main.css" />
-		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<link rel="stylesheet" type="text/css" href="../assets/css/slick.css">
+<link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css">
+<style type="text/css">
+	/* html, body {
+		margin: 0;
+		padding: 0;
+	} */
+
+	/* * {
+		box-sizing: border-box;
+	} */
+
+	.slider {
+			width: 100%;
+			margin: 100px auto;
+	}
+
+	.slick-slide {
+		margin: 0px 20px;
+	}
+
+	.slick-slide img {
+		width: 100%;
+	}
+
+	.slick-prev:before,
+	.slick-next:before {
+		color: black;
+	}
+
+
+	.slick-slide {
+		transition: all ease-in-out .3s;
+		opacity: .2;
+	}
+
+	.slick-active {
+		opacity: .5;
+	}
+
+	.slick-current {
+		opacity: 1;
+	}
+</style>
+
 	</head>
 	<body>
 		<!-- Wrapper -->
@@ -103,7 +146,58 @@
 								  <span class="image fit"><video src="../images\AR Festival of Play/ezgif.com-crop.mp4" controls="controls" loop="loop" autoplay="autoplay"></video></span>
 									<br><br><br><br><br>
 									<span class="image fit"><img src="../images\AR Festival of Play/Untitled.png" alt="" /></span>
+									<br><br><br><br>
+									<p><b>Today at Apple workshop</b></p>
+									<section class="lazy slider" data-sizes="50vw">
 
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\20200114_164045.jpg"  data-sizes="100vw">
+
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0576.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0574.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0578.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0580.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0600.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0585.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0608.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0631.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0617.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0663.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0687.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\_MG_0717.jpeg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\20200114_185210.jpg"  data-sizes="100vw">
+										</div>
+										<div>
+											<img data-lazy="../images\AR Festival of Play\today_at_apple\20200114_185401.jpg"  data-sizes="100vw">
+										</div>
+
+									</section>
 
 
 
@@ -173,6 +267,17 @@
 		<script src="../assets/js/util.js"></script>
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="../assets/js/main.js"></script>
+		<script src="assets\js\slick.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).on('ready', function() {
+
+				$(".lazy").slick({
+					lazyLoad: 'ondemand', // ondemand progressive anticipated
+					dots: true,
+					infinite: true
+				});
+			});
+		</script>
 
 
 </body></html>
