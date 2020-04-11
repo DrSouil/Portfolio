@@ -55,7 +55,7 @@
         
         
         // Parameters : name, position, scene
-            var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(60, 0, 0), scene);
+            var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(60, -10, 0), scene);
             var movespeed = 0.1; 
         // Targets the camera to a particular position. In this case the scene origin
             camera.setTarget(BABYLON.Vector3.Zero());
@@ -78,7 +78,7 @@
          // custom position function for SPS creation
          var myPositionFunction = function(particle, i, s) {
               particle.position.x = (Math.random() - 0.5) * fact;
-              particle.position.y = (Math.random() - 0.5) * fact*0.2;
+              particle.position.y = (Math.random() - 0.5) * fact*0.4;
               particle.position.z = (Math.random() - 0.5) * fact*0.1;
             //   particle.rotation.x = Math.random() * 3.15;
                particle.rotation.y = Math.random() * 3.15;
