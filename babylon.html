@@ -49,10 +49,14 @@
         var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true }); };
         var createScene = function() {
           var scene = new BABYLON.Scene(engine);
-          scene.clearColor = BABYLON.Color3.Black;
+          scene.clearColor = BABYLON.Color3.FromInts(240, 240, 240);
         //   var camera = new BABYLON.ArcRotateCamera("camera1",  0, 0, 0, new BABYLON.Vector3(0, 0, -0), scene);
         //   camera.setPosition(new BABYLON.Vector3(0, 50, -200));
         
+            // Fog
+            scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
+            scene.fogDensity = 0.03;
+            scene.fogColor = scene.clearColor;
         
         // Parameters : name, position, scene
             var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(60, -10, 0), scene);
@@ -63,11 +67,11 @@
           camera.attachControl(canvas, true);
             //camera.inputs.clear();
             camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
-          /*
-          var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 0, 0), scene);
-          light.intensity = 0.85;
-          light.specular = new BABYLON.Color3(0.95, 0.95, 0.81);
-          */
+        
+          //var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+        //var light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -1, -0.3), scene);
+         
+        
           var pl = new BABYLON.PointLight("pl", new BABYLON.Vector3(0, 0, 0), scene);
           pl.diffuse = new BABYLON.Color3(1, 1, 1);
           pl.intensity = 1.0;
@@ -88,7 +92,8 @@
           };
          
            // model : triangle
-           var triangle = BABYLON.MeshBuilder.CreatePlane("t", {width: 0.1, height: 1, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
+           //var triangle = BABYLON.MeshBuilder.CreatePlane("t", {width: 0.1, height: 1.5, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
+           var triangle = BABYLON.MeshBuilder.CreatePlane("t", {width: Math.random()*0.05+0.05, height: Math.random()+1, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
           
           // SPS creation : Immutable {updatable: false}
           var SPS = new BABYLON.SolidParticleSystem('SPS', scene, {updatable: false});
