@@ -61,7 +61,8 @@
             camera.setTarget(BABYLON.Vector3.Zero());
         
           camera.attachControl(canvas, true);
-        camera.inputs.clear();
+            //camera.inputs.clear();
+            camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
           /*
           var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 0, 0), scene);
           light.intensity = 0.85;
