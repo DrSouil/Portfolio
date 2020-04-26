@@ -43,8 +43,8 @@
                 beta = event.beta,
                 gamma = event.gamma;
         if(alpha != null || beta != null || gamma != null){
-            if(Math.abs(gamma)<45 && sharkOrNO){
-                var oBox = document.getElementById('box').style.transform="rotateZ("+-gamma+"deg) translate(-7px, 1px)");
+            if(Math.abs(gamma)<45){
+                document.getElementById('box').style.transform="rotateZ("+-gamma+"deg) translate(-7px, 1px)";
             }
         }
     }
