@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded',function(){
                        x>30||
                        y>30||
                        z>30            ){
-                oBox.className ='shake';            
+                oBox.className ='shake';
              oBox.style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
              timer=setTimeout(function(){
                   oBox.className ='';
@@ -63,5 +63,10 @@ document.addEventListener('DOMContentLoaded',function(){
        alert('不支持');
     }
 },false);
+
+window.addEventListener('deviceorientation', function(event) {
+  var oBox = document.getElementById('box').style.background='rgb('event.beta','event.gamma','event.alpha')';
+
+
   </script>
 </html>
