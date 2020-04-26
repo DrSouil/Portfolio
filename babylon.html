@@ -52,33 +52,34 @@
           scene.clearColor = BABYLON.Color3.FromInts(240, 240, 240);
         //   var camera = new BABYLON.ArcRotateCamera("camera1",  0, 0, 0, new BABYLON.Vector3(0, 0, -0), scene);
         //   camera.setPosition(new BABYLON.Vector3(0, 50, -200));
-        
+
             // Fog
             scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
             scene.fogDensity = 0.03;
             scene.fogColor = scene.clearColor;
-        
+
         // Parameters : name, position, scene
-            var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(60, -10, 0), scene);
-            var movespeed = 0.1; 
+            //var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(60, -10, 0), scene);
+             var camera = new BABYLON.DeviceOrientationCamera("DevOr_camera", new BABYLON.Vector3(60, -10, 0), scene);
+            var movespeed = 0.1;
         // Targets the camera to a particular position. In this case the scene origin
             camera.setTarget(BABYLON.Vector3.Zero());
-        
+
           camera.attachControl(canvas, true);
             //camera.inputs.clear();
             camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
-        
+
           //var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
         //var light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -1, -0.3), scene);
-         
-        
+
+
           var pl = new BABYLON.PointLight("pl", new BABYLON.Vector3(0, 0, 0), scene);
           pl.diffuse = new BABYLON.Color3(1, 1, 1);
           pl.intensity = 1.0;
-          
+
           var nb = 16000;    		// nb of triangles
           var fact = 100; 			// cube size
-          	
+
          // custom position function for SPS creation
          var myPositionFunction = function(particle, i, s) {
               particle.position.x = (Math.random() - 0.5) * fact;
@@ -90,86 +91,86 @@
               //particle.color = new BABYLON.Color4(particle.position.x / fact , particle.position.z / fact , 0, 1.0);
               particle.color = new BABYLON.Color4(Math.random()*0.5 , Math.random() , 0, 1);
           };
-         
+
            // model : triangle
            var triangle = BABYLON.MeshBuilder.CreatePlane("t", {width: 0.1, height: 3, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
            //var triangle = BABYLON.MeshBuilder.CreatePlane("t", {width: Math.random()*0.05+0.05, height: Math.random()*+3, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
-          
+
           // SPS creation : Immutable {updatable: false}
           var SPS = new BABYLON.SolidParticleSystem('SPS', scene, {updatable: false});
-          
+
            SPS.addShape(triangle, nb, {positionFunction: myPositionFunction});
           var mesh = SPS.buildMesh();
-        
-          
+
+
           // dispose the model
           triangle.dispose();
-        
-         
+
+
           var mouse=0;
             var onPointerDown = function (evt) {
                 if (evt.button !== 0) {
                     return;
                 }
-                
-                
+
+
                  if(scene.pointerY>600.0){
                     mouse=1;
                     camera.position= new BABYLON.Vector3(camera.position.x-movespeed, camera.position.y, camera.position.z);
-                
-        
+
+
                 }
                 else{
                     mouse=-1;
                     camera.position= new BABYLON.Vector3(camera.position.x+movespeed, camera.position.y, camera.position.z);
-        
+
                 }
-               
-            
+
+
             }
-        
+
             var onPointerUp = function () {
-            
+
                 mouse=0;
             }
-        
+
             var onPointerMove = function (evt) {
-               
-               
-        
+
+
+
             }
               canvas.addEventListener("pointerdown", onPointerDown, false);
             canvas.addEventListener("pointerup", onPointerUp, false);
             canvas.addEventListener("pointermove", onPointerMove, false);
-        
+
             scene.onDispose = function () {
                 canvas.removeEventListener("pointerdown", onPointerDown);
                 canvas.removeEventListener("pointerup", onPointerUp);
                 canvas.removeEventListener("pointermove", onPointerMove);
             }
-        
+
              // SPS mesh animation
           scene.registerBeforeRender(function() {
             pl.position = camera.position;
             //SPS.mesh.rotation.y += 0.01;
         	//SPS.mesh.rotation.z += 0.005;
                      if(mouse==1){
-                    
+
                     camera.position= new BABYLON.Vector3(camera.position.x-movespeed, camera.position.y, camera.position.z);
-                
-        
+
+
                 }
                 else if(mouse==-1){
-                    
+
                     camera.position= new BABYLON.Vector3(camera.position.x+movespeed, camera.position.y, camera.position.z);
-        
+
                 }
           });
-        
+
           return scene;
         };
-        
-        
+
+
         engine = createDefaultEngine();
         if (!engine) throw 'engine should not be null.';
         scene = createScene();;

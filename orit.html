@@ -44,7 +44,7 @@
                 gamma = event.gamma;
         if(alpha != null || beta != null || gamma != null){
             if(Math.abs(gamma)<45){
-                document.getElementById('box').css("transform","rotateZ("+-gamma+"deg) translate(-7px, 1px)");
+                document.getElementById('box').style.transform="rotateZ("+-gamma+"deg) translate(-7px, 1px)";
             }
         }
     }
