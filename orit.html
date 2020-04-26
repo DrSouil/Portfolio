@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css" media="screen">
+        //定义一个左右摇摆动画
+        @keyframes test{
+                0%{ transform:rotate(0deg); }
+               25%{ transform:rotate(30deg); }
+               50%{ transform:rotate(0deg);}
+               75%{ transform:rotate(-30deg); }
+              100%{ transform:rotate(0deg);}
+        }
+      #box{
+         width:400px;height:200px;
+         background:red;
+         margin:200px auto;
+      }
+      //给box加一个动画
+     #box.shake{
+          animation:200ms test ease;
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+
+
+    <div id="box"></div>
+
+  </body>
+  <script type="text/javascript">
+  //在这里定义一个随机数函数
+function rnd(m,n){
+ return parseInt(Math.random()*(n-m)+m);
+}
+//给文档加DOMContentLoaded事件，该事件类似window.onloaded
+document.addEventListener('DOMContentLoaded',function(){
+  var oBox = document.getElementById('box');
+  var timer=null;
+    if(window.DeviceMotionEvent){
+          window.addEventListener('devicemotion',function(ev){
+              var acc = ev.accelerationIncludingGravity;
+              //获取devicemotion的xyz变化
+              var x = acc.x;
+              var y = acc.y;
+              var z = acc.z;
+              if(
+                       x>30||
+                       y>30||
+                       z>30            ){
+                oBox.className ='shake';            
+             oBox.style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
+             timer=setTimeout(function(){
+                  oBox.className ='';
+             },300)
+         }
+      },false);
+     }else{
+       alert('不支持');
+    }
+},false);
+  </script>
+</html>
