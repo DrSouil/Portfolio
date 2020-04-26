@@ -72,10 +72,10 @@
           //var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
         //var light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -1, -0.3), scene);
 var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(-1, -1, -2), scene);
-
+        light.intensity =2;
           var pl = new BABYLON.PointLight("pl", new BABYLON.Vector3(0, 0, 0), scene);
           pl.diffuse = new BABYLON.Color3(1, 1, 1);
-          pl.intensity = 0.2;
+          pl.intensity = 0.25;
 
           var nb = 16000;    		// nb of triangles
           var fact = 100; 			// cube size
