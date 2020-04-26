@@ -33,41 +33,23 @@
 
   </body>
   <script type="text/javascript">
-  //在这里定义一个随机数函数
-function rnd(m,n){
- return parseInt(Math.random()*(n-m)+m);
-}
-//给文档加DOMContentLoaded事件，该事件类似window.onloaded
-document.addEventListener('DOMContentLoaded',function(){
-  var oBox = document.getElementById('box');
-  var timer=null;
-    if(window.DeviceMotionEvent){
-          window.addEventListener('devicemotion',function(ev){
-              var acc = ev.accelerationIncludingGravity;
-              //获取devicemotion的xyz变化
-              var x = acc.x;
-              var y = acc.y;
-              var z = acc.z;
-              if(
-                       x>30||
-                       y>30||
-                       z>30            ){
-                oBox.className ='shake';
-             oBox.style.background='rgb('+rnd(0,256)+','+rnd(0,256)+','+rnd(0,256)+')';
-             timer=setTimeout(function(){
-                  oBox.className ='';
-             },300)
-         }
-      },false);
-     }else{
-       alert('不支持');
-    }
-},false);
 
-window.addEventListener('deviceorientation', function(event) {
-  var oBox = document.getElementById('box').style.background='rgb('event.beta','event.gamma','event.alpha')';
-}
-,false);
+  //手机倾斜监听
+    if(window.DeviceOrientationEvent){
+        window.addEventListener('deviceorientation',DeviceOrientationHandler,false);
+    }
+    function DeviceOrientationHandler(event){
+        var alpha = event.alpha,
+                beta = event.beta,
+                gamma = event.gamma;
+        if(alpha != null || beta != null || gamma != null){
+            if(Math.abs(gamma)<45 && sharkOrNO){
+                var oBox = document.getElementById('box').style.transform="rotateZ("+-gamma+"deg) translate(-7px, 1px)");
+            }
+        }
+    }
+
+
 
   </script>
 </html>
