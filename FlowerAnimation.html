@@ -88,6 +88,7 @@
                   var pl = new BABYLON.PointLight("pl", new BABYLON.Vector3(0, 0, 0), scene);
                   pl.diffuse = new BABYLON.Color3(1, 1, 1);
                   pl.intensity = 0.25;
+
                   var spriteManager = new BABYLON.SpriteManager("flowerManager", "images/flower.png", 1, 400, scene);
 
                   var sprite = new BABYLON.Sprite("flower", spriteManager);
@@ -95,7 +96,7 @@
                    sprite.position.y =10;
                    sprite.size =5;
 
-                  var nb = 5000;    		// nb of triangles
+                  var nb = 2000;    		// nb of triangles
                   var fact = 100; 			// cube size
 
                  // custom position function for SPS creation
@@ -122,8 +123,8 @@
                     particle.scaling.y += grothspeed;
                     }
                     else {
-                    particle.scaling.x -= grothspeed*3;
-                    particle.scaling.y -= grothspeed*3;
+                    particle.scaling.x -= grothspeed;
+                    particle.scaling.y -= grothspeed;
 
                     }
 
@@ -140,7 +141,7 @@
 
                    // model : triangle
                    //var triangle = BABYLON.MeshBuilder.CreatePlane("t", {height: 3,sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
-                   var triangle = BABYLON.MeshBuilder.CreateDisc("t", {tessellation:32, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
+                   var triangle = BABYLON.MeshBuilder.CreateDisc("t", {tessellation:16, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
                     //var triangle = BABYLON.MeshBuilder.CreateBox("c",scene);
                   // SPS creation : Immutable {updatable: false}
                   var SPS = new BABYLON.SolidParticleSystem('SPS', scene);
