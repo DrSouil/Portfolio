@@ -93,7 +93,7 @@
 
                   var sprite = new BABYLON.Sprite("flower", spriteManager);
                    //sprite.position.x =10;
-                   sprite.position.y =10;
+                   sprite.position.y =0;
                    sprite.size =5;
 
                   var nb = 2000;    		// nb of triangles
@@ -102,8 +102,8 @@
                  // custom position function for SPS creation
                  var myPositionFunction = function(particle, i, s) {
                       particle.position.x = (Math.random() - 0.5) * fact;
-                      particle.position.y = (Math.random() - 0.5) * fact*0.4;
-                      particle.position.z = (Math.random() - 0.5) * fact*0.3;
+                      particle.position.y = (Math.random() - 0.5) * fact*0.2;
+                      particle.position.z = (Math.random() - 0.5) * fact*0.25;
                       var size =Math.random()*0.5+0.5;
                       particle.scaling.x = size;
                       particle.scaling.y = size;
