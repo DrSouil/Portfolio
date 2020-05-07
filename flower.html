@@ -1,207 +1,259 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <title>Flower</title>
+  <title>Flower</title>
 
-        <!-- Babylon.js -->
-        <script src="https://code.jquery.com/pep/0.4.2/pep.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
-        <script src="https://preview.babylonjs.com/ammo.js"></script>
-        <script src="https://preview.babylonjs.com/cannon.js"></script>
-        <script src="https://preview.babylonjs.com/Oimo.js"></script>
-        <script src="https://preview.babylonjs.com/libktx.js"></script>
-        <script src="https://preview.babylonjs.com/earcut.min.js"></script>
-        <script src="https://preview.babylonjs.com/babylon.js"></script>
-        <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
-        <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
-        <script src="https://preview.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
-        <script src="https://preview.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
-        <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
-        <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
-        <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+  <!-- Babylon.js -->
+  <script src="https://code.jquery.com/pep/0.4.2/pep.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
+  <script src="https://preview.babylonjs.com/ammo.js"></script>
+  <script src="https://preview.babylonjs.com/cannon.js"></script>
+  <script src="https://preview.babylonjs.com/Oimo.js"></script>
+  <script src="https://preview.babylonjs.com/libktx.js"></script>
+  <script src="https://preview.babylonjs.com/earcut.min.js"></script>
+  <script src="https://preview.babylonjs.com/babylon.js"></script>
+  <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
+  <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+  <script src="https://preview.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
+  <script src="https://preview.babylonjs.com/postProcessesLibrary/babylonjs.postProcess.min.js"></script>
+  <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
+  <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
+  <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
 
-        <style>
-            html, body {
-                overflow: hidden;
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
+  <style>
+  html, body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
-            #renderCanvas {
-                width: 100%;
-                height: 100%;
-                touch-action: none;
-            }
-        </style>
-    </head>
+  #renderCanvas {
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+  }
+  </style>
+</head>
 <body>
-    <canvas id="renderCanvas"></canvas>
-    <script>
-        var canvas = document.getElementById("renderCanvas");
+  <canvas id="renderCanvas"></canvas>
+  <script>
+  //Ios permit
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    DeviceOrientationEvent.requestPermission()
+    .catch(()=> {
+      // GUI
+      var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("ui1");
 
-        var engine = null;
-        var scene = null;
-        var sceneToRender = null;
-        var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true }); };
-        var createScene = function() {
-          var scene = new BABYLON.Scene(engine);
-          scene.clearColor = BABYLON.Color3.FromInts(240, 240, 240);
-        //   var camera = new BABYLON.ArcRotateCamera("camera1",  0, 0, 0, new BABYLON.Vector3(0, 0, -0), scene);
-        //   camera.setPosition(new BABYLON.Vector3(0, 50, -200));
+      var panel = new BABYLON.GUI.StackPanel();
+      panel.width = 0.25;
+      //panel.rotation = 0.2;
+      panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+      advancedTexture.addControl(panel);
 
-            // Fog
-            scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
-            scene.fogDensity = 0.03;
-            scene.fogColor = scene.clearColor;
-
-        // Parameters : name, position, scene
-            //var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(60, -10, 0), scene);
-             var camera = new BABYLON.DeviceOrientationCamera("DevOr_camera", new BABYLON.Vector3(10, 25, 0), scene);
-            var movespeed = 0.1;
-        // Targets the camera to a particular position. In this case the scene origin
-            camera.setTarget(BABYLON.Vector3.Zero());
-
-          camera.attachControl(canvas, true);
-            //camera.inputs.clear();
-            camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
-
-          //var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
-        //var light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -1, -0.3), scene);
-var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(-1, -1, -2), scene);
-        light.intensity =2;
-          var pl = new BABYLON.PointLight("pl", new BABYLON.Vector3(0, 0, 0), scene);
-          pl.diffuse = new BABYLON.Color3(1, 1, 1);
-          pl.intensity = 0.25;
-
-          // Parameters : name, imgUrl, capacity, cellSize, scene
-          var spriteManager = new BABYLON.SpriteManager("flowerManager", "images/flower.png", 1, 400, scene);
-
-          var sprite = new BABYLON.Sprite("flower", spriteManager);
-           //sprite.position.x =10;
-           sprite.position.y =10;
-           sprite.size =5;
+      var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Click to allow access to sensor");
+      button1.width = 0.2;
+      button1.height = "40px";
+      button1.color = "black";
+      button1.cornerRadius = 20;
+      //button1.background = "green";
+      button1.onPointerUpObservable.add(function() {
+        setup();
+      });
+      panel.addControl(button1);
+      throw error;
 
 
-          var nb = 16000;    		// nb of triangles
-          var fact = 100; 			// cube size
+    })
+    .then(response => {
+      if (response == 'granted') {
+        //window.addEventListener('deviceorientation', (e) => {
+        // do something with e
+      }
 
-         // custom position function for SPS creation
-         var myPositionFunction = function(particle, i, s) {
-              particle.position.x = (Math.random() - 0.5) * fact;
-              particle.position.y = (Math.random() - 0.5) * fact*0.4;
-              particle.position.z = (Math.random() - 0.5) * fact*0.3;
-              var size =Math.random()*0.5+0.5;
-              particle.scaling.x = size;
-              particle.scaling.y = size;
-              particle.rotation.x = 0.5 * 3.15;
- particle.rotation.y = 0.5 * 3.15;
-            //   particle.rotation.z = Math.random() * 1.5;
-              //particle.color = new BABYLON.Color4(particle.position.x / fact , particle.position.z / fact , 0, 1.0);
-              particle.color = new BABYLON.Color4(Math.random()*0.5+0.5 , 0 , Math.random()*0.5, 1);
-          };
+    })
 
-           // model : triangle
-           //var triangle = BABYLON.MeshBuilder.CreatePlane("t", {height: 3, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
-            var triangle = BABYLON.MeshBuilder.CreateDisc("t", {tessellation:36, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
-           //var triangle = BABYLON.MeshBuilder.CreatePlane("t", {width: Math.random()*0.05+0.05, height: Math.random()*+3, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
+  }
+  else {
+    // non iOS 13+
+  }
 
-          // SPS creation : Immutable {updatable: false}
-          var SPS = new BABYLON.SolidParticleSystem('SPS', scene, {updatable: false});
+  var setup =  function() {
+    DeviceOrientationEvent.requestPermission()
+    .then(response => {
+      if (response == 'granted') {
 
-           SPS.addShape(triangle, nb, {positionFunction: myPositionFunction});
-          var mesh = SPS.buildMesh();
+      }
+    })
+    .catch(console.error)
+    this.remove();
 
+  };
 
-          // dispose the model
-          triangle.dispose();
+  var canvas = document.getElementById("renderCanvas");
 
+  var engine = null;
+  var scene = null;
+  var sceneToRender = null;
+  var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true }); };
+  var createScene = function() {
+    var scene = new BABYLON.Scene(engine);
+    scene.clearColor = BABYLON.Color3.FromInts(240, 240, 240);
+    //   var camera = new BABYLON.ArcRotateCamera("camera1",  0, 0, 0, new BABYLON.Vector3(0, 0, -0), scene);
+    //   camera.setPosition(new BABYLON.Vector3(0, 50, -200));
 
-          var mouse=0;
-            var onPointerDown = function (evt) {
-                if (evt.button !== 0) {
-                    return;
-                }
+    // Fog
+    scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
+    scene.fogDensity = 0.03;
+    scene.fogColor = scene.clearColor;
 
+    // Parameters : name, position, scene
+    //var camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(60, -10, 0), scene);
+    var camera = new BABYLON.DeviceOrientationCamera("DevOr_camera", new BABYLON.Vector3(10, 25, 0), scene);
+    var movespeed = 0.1;
+    // Targets the camera to a particular position. In this case the scene origin
+    camera.setTarget(BABYLON.Vector3.Zero());
 
-                 if(scene.pointerY>600.0){
-                    mouse=1;
-                    camera.position= new BABYLON.Vector3(camera.position.x-movespeed, camera.position.y, camera.position.z);
+    camera.attachControl(canvas, true);
+    //camera.inputs.clear();
+    camera.inputs.removeByType("FreeCameraKeyboardMoveInput");
 
+    //var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+    //var light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -1, -0.3), scene);
+    var light = new BABYLON.DirectionalLight("DirectionalLight", new BABYLON.Vector3(-1, -1, -2), scene);
+    light.intensity =2;
+    var pl = new BABYLON.PointLight("pl", new BABYLON.Vector3(0, 0, 0), scene);
+    pl.diffuse = new BABYLON.Color3(1, 1, 1);
+    pl.intensity = 0.25;
 
-                }
-                else{
-                    mouse=-1;
-                    camera.position= new BABYLON.Vector3(camera.position.x+movespeed, camera.position.y, camera.position.z);
+    // Parameters : name, imgUrl, capacity, cellSize, scene
+    var spriteManager = new BABYLON.SpriteManager("flowerManager", "images/flower.png", 1, 400, scene);
 
-                }
-
-
-            }
-
-            var onPointerUp = function () {
-
-                mouse=0;
-            }
-
-            var onPointerMove = function (evt) {
-
-
-
-            }
-              canvas.addEventListener("pointerdown", onPointerDown, false);
-            canvas.addEventListener("pointerup", onPointerUp, false);
-            canvas.addEventListener("pointermove", onPointerMove, false);
-
-            scene.onDispose = function () {
-                canvas.removeEventListener("pointerdown", onPointerDown);
-                canvas.removeEventListener("pointerup", onPointerUp);
-                canvas.removeEventListener("pointermove", onPointerMove);
-            }
-
-             // SPS mesh animation
-          scene.registerBeforeRender(function() {
-
-            //SPS.mesh.rotation.y += 0.01;
-        	//SPS.mesh.rotation.z += 0.005;
-                     if(mouse==1){
-
-                    camera.position= new BABYLON.Vector3(camera.position.x-movespeed, camera.position.y, camera.position.z);
+    var sprite = new BABYLON.Sprite("flower", spriteManager);
+    //sprite.position.x =10;
+    sprite.position.y =10;
+    sprite.size =5;
 
 
-                }
-                else if(mouse==-1){
+    var nb = 16000;    		// nb of triangles
+    var fact = 100; 			// cube size
 
-                    camera.position= new BABYLON.Vector3(camera.position.x+movespeed, camera.position.y, camera.position.z);
+    // custom position function for SPS creation
+    var myPositionFunction = function(particle, i, s) {
+      particle.position.x = (Math.random() - 0.5) * fact;
+      particle.position.y = (Math.random() - 0.5) * fact*0.4;
+      particle.position.z = (Math.random() - 0.5) * fact*0.3;
+      var size =Math.random()*0.5+0.5;
+      particle.scaling.x = size;
+      particle.scaling.y = size;
+      particle.rotation.x = 0.5 * 3.15;
+      particle.rotation.y = 0.5 * 3.15;
+      //   particle.rotation.z = Math.random() * 1.5;
+      //particle.color = new BABYLON.Color4(particle.position.x / fact , particle.position.z / fact , 0, 1.0);
+      particle.color = new BABYLON.Color4(Math.random()*0.5+0.5 , 0 , Math.random()*0.5, 1);
+    };
 
-                }
-                pl.position = camera.position;
-                sprite.position.z = camera.position.z;
-                 sprite.position.x = camera.position.x;
-          });
+    // model : triangle
+    //var triangle = BABYLON.MeshBuilder.CreatePlane("t", {height: 3, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
+    var triangle = BABYLON.MeshBuilder.CreateDisc("t", {tessellation:36, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
+    //var triangle = BABYLON.MeshBuilder.CreatePlane("t", {width: Math.random()*0.05+0.05, height: Math.random()*+3, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
 
-          return scene;
-        };
+    // SPS creation : Immutable {updatable: false}
+    var SPS = new BABYLON.SolidParticleSystem('SPS', scene, {updatable: false});
+
+    SPS.addShape(triangle, nb, {positionFunction: myPositionFunction});
+    var mesh = SPS.buildMesh();
 
 
-        engine = createDefaultEngine();
-        if (!engine) throw 'engine should not be null.';
-        scene = createScene();;
-        sceneToRender = scene
+    // dispose the model
+    triangle.dispose();
 
-        engine.runRenderLoop(function () {
-            if (sceneToRender) {
-                sceneToRender.render();
-            }
-        });
 
-        // Resize
-        window.addEventListener("resize", function () {
-            engine.resize();
-        });
-    </script>
+    var mouse=0;
+    var onPointerDown = function (evt) {
+      if (evt.button !== 0) {
+        return;
+      }
+
+
+      if(scene.pointerY>600.0){
+        mouse=1;
+        camera.position= new BABYLON.Vector3(camera.position.x-movespeed, camera.position.y, camera.position.z);
+
+
+      }
+      else{
+        mouse=-1;
+        camera.position= new BABYLON.Vector3(camera.position.x+movespeed, camera.position.y, camera.position.z);
+
+      }
+
+
+    }
+
+    var onPointerUp = function () {
+
+      mouse=0;
+    }
+
+    var onPointerMove = function (evt) {
+
+
+
+    }
+    canvas.addEventListener("pointerdown", onPointerDown, false);
+    canvas.addEventListener("pointerup", onPointerUp, false);
+    canvas.addEventListener("pointermove", onPointerMove, false);
+
+    scene.onDispose = function () {
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      canvas.removeEventListener("pointerup", onPointerUp);
+      canvas.removeEventListener("pointermove", onPointerMove);
+    }
+
+    // SPS mesh animation
+    scene.registerBeforeRender(function() {
+
+      //SPS.mesh.rotation.y += 0.01;
+      //SPS.mesh.rotation.z += 0.005;
+      if(mouse==1){
+
+        camera.position= new BABYLON.Vector3(camera.position.x-movespeed, camera.position.y, camera.position.z);
+
+
+      }
+      else if(mouse==-1){
+
+        camera.position= new BABYLON.Vector3(camera.position.x+movespeed, camera.position.y, camera.position.z);
+
+      }
+      pl.position = camera.position;
+      sprite.position.z = camera.position.z;
+      sprite.position.x = camera.position.x;
+    });
+
+    return scene;
+  };
+
+
+  engine = createDefaultEngine();
+  if (!engine) throw 'engine should not be null.';
+  scene = createScene();;
+  sceneToRender = scene
+
+  engine.runRenderLoop(function () {
+    if (sceneToRender) {
+      sceneToRender.render();
+    }
+  });
+
+  // Resize
+  window.addEventListener("resize", function () {
+    engine.resize();
+  });
+  </script>
 </body>
 </html>
