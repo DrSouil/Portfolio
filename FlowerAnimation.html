@@ -61,11 +61,6 @@
 
   var canvas = document.getElementById("renderCanvas");
 
-  var engine = null;
-  var scene = null;
-  var sceneToRender = null;
-  var createDefaultEngine = function() { return new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true }); };
-  var canvas = document.getElementById("renderCanvas");
 
   var engine = null;
   var scene = null;
@@ -76,6 +71,28 @@
     scene.clearColor = BABYLON.Color3.FromInts(240, 240, 240);
     //   var camera = new BABYLON.ArcRotateCamera("camera1",  0, 0, 0, new BABYLON.Vector3(0, 0, -0), scene);
     //   camera.setPosition(new BABYLON.Vector3(0, 50, -200));
+
+    // GUI
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("ui1");
+
+    var panel = new BABYLON.GUI.StackPanel();
+    panel.width = 0.25;
+    //panel.rotation = 0.2;
+    panel.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
+    advancedTexture.addControl(panel);
+
+    var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Click Me");
+    button1.width = 0.2;
+    button1.height = "40px";
+    button1.color = "white";
+    button1.cornerRadius = 20;
+    //button1.background = "green";
+    button1.onPointerUpObservable.add(function() {
+        setup();
+    });
+    panel.addControl(button1);
+
+
 
     // Fog
     scene.fogMode = BABYLON.Scene.FOGMODE_EXP;
