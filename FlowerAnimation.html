@@ -42,6 +42,7 @@
   <canvas id="renderCanvas"></canvas>
   <script>
   var setup =  function() {
+
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
       DeviceOrientationEvent.requestPermission()
       .then(response => {
@@ -49,10 +50,11 @@
           //window.addEventListener('deviceorientation', (e) => {
             // do something with e
           })
-        }
+        
       })
       .catch(console.error)
-    } else {
+    }
+    else {
       // non iOS 13+
     }
   };
