@@ -68,8 +68,8 @@
 
 		scene = new THREE.Scene();
 		scene.background = new THREE.Color( 0xefd1b5 );
-		//scene.fog = new THREE.FogExp2( 0xefd1b5, 0.0005 );
-		scene.fog = new THREE.Fog( 0xefd1b5,1,10000 );
+		scene.fog = new THREE.FogExp2( 0xefd1b5, 0.0005 );
+		//scene.fog = new THREE.Fog( 0xefd1b5,1,10000 );
 
 		var data = generateHeight( worldWidth, worldDepth,0 );
 
@@ -188,7 +188,7 @@
 		for ( var i = 0; i < size; i ++ ) {
 
 			var x = i % width, y = ~ ~ ( i / width );
-			data[ i ] = Math.abs( perlin.noise( x/30 , y/30 - time, z ) * 100);
+			data[ i ] = Math.abs( perlin.noise( x/30 , y/30 - time, z ) * 150);
 			//data[ i ].toFixed(0);
 		}
 
