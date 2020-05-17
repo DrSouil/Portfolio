@@ -11,7 +11,7 @@ import {
 	Quaternion,
 	Vector3
 
-} from "/three.module.js";
+} from "../assets/js/three.module.js";
 
 var DeviceOrientationControls = function ( object ) {
 
